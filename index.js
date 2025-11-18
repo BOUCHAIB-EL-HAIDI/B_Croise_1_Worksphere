@@ -17,6 +17,8 @@ const experience_container = document.querySelector('.experience_container')
 const addExpBtn = document.getElementById('addExpBtn');
 const experience_entry = document.querySelectorAll('.experience_entry');
 
+const autreRole = document.querySelector('.autreRole');
+
 let employeIdCount = 0 ;
 
 
@@ -30,6 +32,101 @@ let experience = {};
 
 let Total_Experience = [];
 
+let roomsAllowed = [];
+
+// this array is storing allowed rooms by role 
+const allowedRoomsByRole = [
+  {
+    role: "Manager",
+    allowedRooms: [
+      "confrence_room",
+      "reception_room",
+      "serveurs_room",
+      "security_room",
+      "personnel_room",
+      "archives_room"
+    ]
+  },
+
+  {
+    role: "Réceptionnistes",
+    allowedRooms: [
+      "reception_room"
+    ]
+  },
+
+  {
+    role: "Techniciens IT",
+    allowedRooms: [
+      "serveurs_room"
+    ]
+  },
+
+  {
+    role: "Agents de sécurité",
+    allowedRooms: [
+      "security_room"
+    ]
+  },
+
+  {
+    role: "Nettoyage",
+    allowedRooms: [
+      "confrence_room",
+      "reception_room",
+      "serveurs_room",
+      "security_room",
+      "personnel_room",
+      "archives_room"
+    ]
+  },
+
+  {
+    role: "Autres Role",
+    allowedRooms: [
+      "personnel_room"
+    ]
+  }
+];
+
+
+
+// displaying  the form 
+
+workerBTn.addEventListener('click', ()=>{
+form.classList.toggle('hidden')
+});
+//closing the form 
+closeForm.addEventListener('click', ()=>{
+form.classList.toggle('hidden')
+});
+
+
+
+
+roleInput.addEventListener('change', ()=> {
+
+if(roleInput.value === "Autres Role"){
+autreRole.classList.remove('hidden');
+
+}else {
+
+    autreRole.classList.add('hidden');
+}
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
 //adding multible experience 
 
 addExpBtn.addEventListener('click', ()=> {
@@ -37,7 +134,7 @@ addExpBtn.addEventListener('click', ()=> {
 
     if (experience_count < 3){
 
-  experience_container.insertAdjacentHTML('beforeend', `
+    experience_container.insertAdjacentHTML('beforeend', `
     <div class="experience_entry mb-4">
             <div class="flex flex-col">
     <label for="Company_Name">Company Name</label>
@@ -62,35 +159,16 @@ addExpBtn.addEventListener('click', ()=> {
     experience_count++;
     
 
-     if (experience_count > 3) {
+     if (experience_count >= 3) {
             addExpBtn.disabled = true; 
             alert("only 3 experience are allowed ")
         }
-
-      
 
 
 })
 
 
 
-
-
-
-
-
-
-
-
-// displaying  the form 
-
-workerBTn.addEventListener('click', ()=>{
-form.classList.toggle('hidden')
-});
-//closing the form 
-closeForm.addEventListener('click', ()=>{
-form.classList.toggle('hidden')
-});
 
 
 //add event listener to submit button 
@@ -114,7 +192,7 @@ submitBtn.addEventListener('click', (e)=>{
     }
   
 
-
+    // this is for getting and storing every employes experience
     Total_Experience = [];
     experience = {};
     
@@ -143,19 +221,53 @@ submitBtn.addEventListener('click', (e)=>{
     }
    
 
+    // this is for getting allowed room by role 
+
+
+    allowedRoomsByRole.forEach(e  => {
+
+      if(e.role === roleInput.value){
+      roomsAllowed.push(e.allowedRooms)
+
+      }
+
+    })
+
+
+
+
+// this if for getting the value of the role when the role is autres 
+
+    const autreRoleInput = document.getElementById('autrerole');
+    let finalRole;
+    
+    if(roleInput.value === "Autres Role"){
+        finalRole = autreRoleInput.value; 
+    } else {
+        finalRole = roleInput.value; 
+    }
+
+
+
+
+
+
+     
+
 
    employe = {
     id: employeIdCount,
     name: nameInput.value,
-    role: roleInput.value,
+    role: finalRole,
     photo: imageURlInput.value,
     email: emailInput.value,
     phone: phoneInput.value,
     experiences: Total_Experience,
     assigned: false,
     assignedZone: null,
-    allowedRooms: ["Reception"]
+    allowedRooms: roomsAllowed 
    }
+   console.log(roleInput.value)
     employes.push(employe);
     employeIdCount++;
    
@@ -163,6 +275,8 @@ submitBtn.addEventListener('click', (e)=>{
 
     console.log("Employee:", employe);
     console.log("All Employees:", employes);
+
+    roomsAllowed = [];
 
     form.reset();
     experience_count = 0;
