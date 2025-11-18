@@ -12,10 +12,11 @@ const phoneInput= document.getElementById('phone');
 const roleInput= document.getElementById('role');
 const imageURlInput= document.getElementById('image');
 
-
+const experience_container = document.querySelector('.experience_container')
 
 const addExpBtn = document.getElementById('addExpBtn');
-const experience_container = document.querySelector('.experience_container');
+const experience_entry = document.querySelectorAll('.experience_entry');
+
 let employeIdCount = 0 ;
 
 
@@ -25,8 +26,9 @@ let employes = [];
 
 let experience_count = 0;
 
+let experience = {};
 
-
+let Total_Experience = [];
 
 //adding multible experience 
 
@@ -35,7 +37,7 @@ addExpBtn.addEventListener('click', ()=> {
 
     if (experience_count < 3){
 
-experience_container.insertAdjacentHTML('beforeend', `
+  experience_container.insertAdjacentHTML('beforeend', `
     <div class="experience_entry mb-4">
             <div class="flex flex-col">
     <label for="Company_Name">Company Name</label>
@@ -58,13 +60,14 @@ experience_container.insertAdjacentHTML('beforeend', `
 
     }
     experience_count++;
+    
 
      if (experience_count > 3) {
             addExpBtn.disabled = true; 
             alert("only 3 experience are allowed ")
         }
 
-
+      
 
 
 })
@@ -93,7 +96,7 @@ form.classList.toggle('hidden')
 //add event listener to submit button 
 submitBtn.addEventListener('click', (e)=>{
    
-    e.preventDefault();
+      e.preventDefault();
 
       if (!form.checkValidity()) {
         form.reportValidity();
@@ -108,7 +111,37 @@ submitBtn.addEventListener('click', (e)=>{
       return ;
      } 
     
-  }
+    }
+  
+
+
+    Total_Experience = [];
+    experience = {};
+    
+    let company_name = document.querySelectorAll('.Company_Name');
+
+    let companyRole = document.querySelectorAll('.Role')
+
+    const experience_entry = document.querySelectorAll('.experience_entry');
+
+    for (let i=0 ; i<experience_entry.length ;i++ ){
+
+     experience = {
+
+      companyName :company_name[i].value ,
+      startingdATE : startDate[i].value,
+
+      endingDate : endDate[i].value ,
+
+      role : companyRole[i].value 
+
+     }
+     Total_Experience.push(experience)
+
+     experience = {};
+
+    }
+   
 
 
    employe = {
@@ -118,18 +151,18 @@ submitBtn.addEventListener('click', (e)=>{
     photo: imageURlInput.value,
     email: emailInput.value,
     phone: phoneInput.value,
-    experiences:" [ { company, startDate, endDate, role }, ... ]",
+    experiences: Total_Experience,
     assigned: false,
     assignedZone: null,
     allowedRooms: ["Reception"]
    }
+    employes.push(employe);
+    employeIdCount++;
+   
+    alert("Employee added successfully!");
 
-employes.push(employe)
-console.log(employe)
-console.log(employes)
-employeIdCount++;
-
-alert("Employee added successfully!");
+    console.log("Employee:", employe);
+    console.log("All Employees:", employes);
 
     form.reset();
     experience_count = 0;
