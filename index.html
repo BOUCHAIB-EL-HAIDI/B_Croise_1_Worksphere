@@ -65,7 +65,7 @@
   <!-- Email -->
   <div class="flex flex-col">
     <label for="email">Email</label>
-    <input type="email" id="email" placeholder="Enter your email" required class="mt-1">
+    <input type="email"  pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" title="Please enter a valid email format: example@domain.com" id="email" placeholder="Enter your email" required class="mt-1">
   </div>
 
   <!-- Phone -->
@@ -94,42 +94,29 @@
 
     <div class="flex flex-col">
       <label for="image">Image URL</label>
-      <input type="url" id="image" placeholder="Enter image URL" class="mt-1" optional>
+      <input type="file" accept="image/png, image/jpeg, image/jpg, image/webp"  id="image" placeholder="Enter image URL" class="mt-1" >
     </div>
   </div>
   
     <div class="experience_section mt-6">
-  <div class="flex  flex-col">
+    <div class="flex  flex-col">
     <h2 class="font-semibold text-lg">Experience</h2>
     </div>
-   
-    <div class="flex flex-col">
-    <label for="Company_Name">Company Name</label>
-    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" id="Company_Name" placeholder="Enter Company Name" required class="mt-1">
-    </div>
-     <div class="flex flex-col">
-    <label for="Start_Date">Start Date</label>
-    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="date" id="Start_Date"  required class="mt-1">
-    </div>
-     <div class="flex flex-col">
-    <label for="End_Date">End Date</label>
-    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="date" id="End_Date" required class="mt-1">
-    </div>
-     <div class="flex flex-col">
-    <label for="Role">Role</label>
-    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="date" id="Role" required class="mt-1">
-    </div>
-    <div id="experienceContainer" class="mt-4 space-y-4">
+    
+    <div class="experience_container">
 
-    </div>
 
-   <button type="button" id="addExpBtn" 
+      
+
+  
+ 
+
+   </div>
+     <button type="button" id="addExpBtn" 
       class="bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">
       + Add Experience
     </button>
-
-</div>
-
+   </div>
     <button type="submit" id="submitBtn" 
       class="bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">
        submit
@@ -137,15 +124,6 @@
 
 
 </form>
-
-
-
-
-
-
-
-
-
 
 
 
