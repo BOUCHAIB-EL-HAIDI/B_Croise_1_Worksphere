@@ -19,6 +19,10 @@ const experience_entry = document.querySelectorAll('.experience_entry');
 
 const autreRole = document.querySelector('.autreRole');
 
+
+const image = document.getElementById('imageSRC');
+image.src = "Assets/NO_image.png" ;
+
 let employeIdCount = 0 ;
 
 
@@ -104,25 +108,34 @@ form.classList.toggle('hidden')
 
 
 
+imageURlInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      image.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+
 roleInput.addEventListener('change', ()=> {
 
 if(roleInput.value === "Autres Role"){
 autreRole.classList.remove('hidden');
+autreRoleInput.setAttribute('required', 'required');
 
 }else {
 
     autreRole.classList.add('hidden');
+    autreRoleInput.removeAttribute('required');
 }
 
 
 
-
-
-
-
 })
-
-
 
 
 
@@ -227,7 +240,7 @@ submitBtn.addEventListener('click', (e)=>{
     allowedRoomsByRole.forEach(e  => {
 
       if(e.role === roleInput.value){
-      roomsAllowed.push(e.allowedRooms)
+      roomsAllowed = e.allowedRooms
 
       }
 
@@ -248,18 +261,13 @@ submitBtn.addEventListener('click', (e)=>{
     }
 
 
-
-
-
-
-     
-
+    
 
    employe = {
     id: employeIdCount,
     name: nameInput.value,
     role: finalRole,
-    photo: imageURlInput.value,
+    photo: image.src,
     email: emailInput.value,
     phone: phoneInput.value,
     experiences: Total_Experience,
@@ -279,6 +287,7 @@ submitBtn.addEventListener('click', (e)=>{
     roomsAllowed = [];
 
     form.reset();
+    image.src = "Assets/NO_image.png";
     experience_count = 0;
     addExpBtn.disabled = false;
     experience_container.innerHTML ="";
