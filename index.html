@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StaffFlow</title>
+ 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind v4 CDN -->
+   <script src="https://cdn.tailwindcss.com/3.4.17?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+           staffGreen: '#38A747',
+          },
+    
+        }
+      }
+    }
+  </script>
+     
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://cdn.jsdelivr.net/npm/libphonenumber-js@1.10.24/bundle/libphonenumber-js.min.js"></script>
+
+</head>
+<body class="box-border m-0 p-0 h-screen" >
+
+
+
+
+
+<nav class="h-14 bg-staffGreen fixed w-full p-2 flex justify-center ">
+    
+    <img class="w-10 h-10 object-contain mr-2 inline-block"src="/Assets/StaffFlow Icon.png" alt="staff flow logo">
+   
+    <span class="text-yellow-400 font-extrabold  text-2xl">StaffFlow</span> 
+</nav>
+  
+<main  class="pt-16 h-screen grid grid-cols-[1fr_3fr] gap-4 p-4 ">
+
+<div  class="unassigned-container p-2 flex flex-col  items-center gap-6 relative">
+<h1 class="text-black font-bold text-2xl">UNASSIGNED WORKER : <span></span></h1>
+
+ <div class="unassigned_list">
+
+
+
+ </div>
+
+<button class="add_worker_btn cursor-pointer bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">ADD NEW WORKER</button>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div  class="plan-container bg-gray-200 p-4">
+
+<div class="rooms  bg-gray-200 w-full h-full border-4 border-green-500 grid grid-cols-12 grid-rows-12 gap-3">
+
+ <div class="confrence_room  row-start-1 row-end-6 col-start-1 col-end-7 bg-[url('/Assets/confrence.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i> </div>
+ <div class="reception_room row-start-6 row-end-13 col-start-1 col-end-6 bg-[url('Assets/reception.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i></div>
+ <div class="serveurs_room  row-start-1 row-end-6 col-start-7 col-end-10 bg-[url('Assets/serveur.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer "></i></div>
+ <div class="security_room row-start-1 row-end-6 col-start-10 col-end-13 bg-[url('Assets/security.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i></div>
+ <div class="personnel_room row-start-6 row-end-13 col-start-7 col-end-10 bg-[url('Assets/personnel.png')] bg-center bg-cover flex justify-center items-center" ><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i></div>
+ <div class="archives_room  row-start-6 row-end-13 col-start-10 col-end-13 bg-[url('Assets/archive.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i></div>
+ 
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>
