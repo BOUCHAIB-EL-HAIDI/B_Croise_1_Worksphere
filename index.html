@@ -54,6 +54,92 @@
 
 <button class="add_worker_btn cursor-pointer bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">ADD NEW WORKER</button>
 
+ <form action="" class="form hidden border-2  flex flex-col space-y-4 p-4 absolute top-10 left-3/4 z-50 bg-gray-300 w-80">
+  <i class="close fa-solid fa-xmark font-extrabold bg-red-600 text-2xl self-end cursor-pointer hover:bg-red-900"></i>
+  <!-- Name -->
+  <div class="flex flex-col">
+    <label for="name">Name</label>
+    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" id="name" placeholder="Enter worker name" required class="mt-1">
+  </div>
+
+  <!-- Email -->
+  <div class="flex flex-col">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email" required class="mt-1">
+  </div>
+
+  <!-- Phone -->
+  <div class="flex flex-col">
+    <label for="phone">Phone</label>
+    <input  pattern="^(06|07|\+212[67])\d{8}$"  title="Enter a valid Moroccan number starting with 06, 07, or +2126/+2127" type="tel" id="phone" placeholder="Enter phone number" required class="mt-1" >
+  </div>
+
+  <!-- Role -->
+  <div class="flex flex-col">
+    <label for="role">Role</label>
+    <select id="role" class="mt-1" required>
+      <option value="" selected disabled>Select a role</option>
+      <option value="Réceptionnistes">Réceptionnistes</option>
+      <option value="Techniciens_IT">Techniciens IT</option>
+      <option value="security_agent">Agents de sécurité</option>
+      <option value="Manager">Manager</option>
+      <option value="Nettoyage">Nettoyage</option>
+      <option value="Autres">Autres Role</option>
+    </select>
+  </div>
+
+  <!-- Photo -->
+  <div class="flex items-center gap-4">
+    <img src="Assets/me.png" alt="preview" class="rounded-full w-16 h-16 border border-gray-400">
+
+    <div class="flex flex-col">
+      <label for="image">Image URL</label>
+      <input type="url" id="image" placeholder="Enter image URL" class="mt-1" optional>
+    </div>
+  </div>
+  
+    <div class="experience_section mt-6">
+  <div class="flex  flex-col">
+    <h2 class="font-semibold text-lg">Experience</h2>
+    </div>
+   
+    <div class="flex flex-col">
+    <label for="Company_Name">Company Name</label>
+    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" id="Company_Name" placeholder="Enter Company Name" required class="mt-1">
+    </div>
+     <div class="flex flex-col">
+    <label for="Start_Date">Start Date</label>
+    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="date" id="Start_Date"  required class="mt-1">
+    </div>
+     <div class="flex flex-col">
+    <label for="End_Date">End Date</label>
+    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="date" id="End_Date" required class="mt-1">
+    </div>
+     <div class="flex flex-col">
+    <label for="Role">Role</label>
+    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="date" id="Role" required class="mt-1">
+    </div>
+    <div id="experienceContainer" class="mt-4 space-y-4">
+
+    </div>
+
+   <button type="button" id="addExpBtn" 
+      class="bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">
+      + Add Experience
+    </button>
+
+</div>
+
+    <button type="submit" id="submitBtn" 
+      class="bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">
+       submit
+    </button>
+
+
+</form>
+
+
+
 
 
 
