@@ -106,6 +106,8 @@ form.classList.toggle('hidden')
 //closing the form 
 closeForm.addEventListener('click', ()=>{
 form.classList.toggle('hidden')
+experience_container.innerHTML ="";
+form.reset();
 });
 
 
@@ -192,11 +194,12 @@ addExpBtn.addEventListener('click', ()=> {
 submitBtn.addEventListener('click', (e)=>{
    
       e.preventDefault();
+
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
     }
-
+    
     const startDate= document.querySelectorAll('.Start_Date');
     const endDate= document.querySelectorAll('.End_Date');
 
@@ -389,4 +392,85 @@ EmployeCount.innerText = employes.length ;
 
 
 
+//this is for making the the assign employe card in each room 
+
+const PlusBtn = document.querySelectorAll('.rooms i ');
+
+PlusBtn.forEach(p => {
+
+p.addEventListener('click',(e)=> {
+
+const roomDiv = e.currentTarget.closest("div[class*='_room']")
+
+const roomName = roomDiv.classList[0];
+
+const assignContainer = roomDiv.querySelector('.assign_employe')
+ assignContainer.classList.toggle('hidden');
+assignContainer.innerHTML = "";
+
+
+ assignContainer.insertAdjacentHTML('afterbegin', `
+    <div class="flex justify-between items-center mb-3">
+      <h1 class="text-black font-semibold text-lg mr-1">Assign Employee</h1>
+      <button class="close bg-red-500 text-white px-1 py-1 rounded hover:bg-red-700">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  `);
+
+
+employes.forEach(e => {
+
+if (e.allowedRooms.includes(roomName) && !e.assigned) {
+
+
+ assignContainer.insertAdjacentHTML('beforeend', `
+  
+    <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-75 " data-id=${e.id}>
+   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${e.photo}" alt="${e.name}">
+
+
+   <div class="flex-1 mx-2">
+    <h1 class="font-bold  text-black my-1">${e.name}</h1>
+     <h2 class="text-gray-600 font-semibold my-1">${e.role}</h2>
+
+   </div>
+  </div> 
+  
+  
+  
+  
+  
+  
+  `)
+
+   const closeBtn = assignContainer.querySelector('.close');
+  closeBtn.addEventListener('click', () => {
+    assignContainer.classList.add('hidden');
+  });
+
+}
+
+
+
+})
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+})
 
