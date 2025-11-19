@@ -18,6 +18,13 @@ const addExpBtn = document.getElementById('addExpBtn');
 const experience_entry = document.querySelectorAll('.experience_entry');
 
 const autreRole = document.querySelector('.autreRole');
+const autreRoleInput = document.getElementById('autrerole');
+
+
+const image = document.getElementById('imageSRC');
+image.src = "Assets/NO_image.png" ;
+
+const unassignedList =  document.querySelector('.unassigned_list');
 
 let employeIdCount = 0 ;
 
@@ -104,25 +111,35 @@ form.classList.toggle('hidden')
 
 
 
+imageURlInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      image.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+
 roleInput.addEventListener('change', ()=> {
 
 if(roleInput.value === "Autres Role"){
 autreRole.classList.remove('hidden');
+autreRoleInput.setAttribute('required', 'required');
 
 }else {
 
     autreRole.classList.add('hidden');
+    autreRoleInput.removeAttribute('required');
+    autreRoleInput.value = ''; 
 }
 
 
 
-
-
-
-
 })
-
-
 
 
 
@@ -175,11 +192,14 @@ addExpBtn.addEventListener('click', ()=> {
 submitBtn.addEventListener('click', (e)=>{
    
       e.preventDefault();
-
+     console.log('Submit clicked!');
       if (!form.checkValidity()) {
         form.reportValidity();
+        console.log('Form is invalid!');
         return;
     }
+    console.log('Form is valid!'); 
+
     const startDate= document.querySelectorAll('.Start_Date');
     const endDate= document.querySelectorAll('.End_Date');
 
@@ -227,7 +247,7 @@ submitBtn.addEventListener('click', (e)=>{
     allowedRoomsByRole.forEach(e  => {
 
       if(e.role === roleInput.value){
-      roomsAllowed.push(e.allowedRooms)
+      roomsAllowed = e.allowedRooms
 
       }
 
@@ -238,7 +258,7 @@ submitBtn.addEventListener('click', (e)=>{
 
 // this if for getting the value of the role when the role is autres 
 
-    const autreRoleInput = document.getElementById('autrerole');
+
     let finalRole;
     
     if(roleInput.value === "Autres Role"){
@@ -248,18 +268,13 @@ submitBtn.addEventListener('click', (e)=>{
     }
 
 
-
-
-
-
-     
-
+    
 
    employe = {
     id: employeIdCount,
     name: nameInput.value,
     role: finalRole,
-    photo: imageURlInput.value,
+    photo: image.src,
     email: emailInput.value,
     phone: phoneInput.value,
     experiences: Total_Experience,
@@ -267,18 +282,17 @@ submitBtn.addEventListener('click', (e)=>{
     assignedZone: null,
     allowedRooms: roomsAllowed 
    }
-   console.log(roleInput.value)
+
     employes.push(employe);
+    displayEmploye(employe)
     employeIdCount++;
    
     alert("Employee added successfully!");
 
-    console.log("Employee:", employe);
-    console.log("All Employees:", employes);
-
     roomsAllowed = [];
 
     form.reset();
+    image.src = "Assets/NO_image.png";
     experience_count = 0;
     addExpBtn.disabled = false;
     experience_container.innerHTML ="";
@@ -307,3 +321,32 @@ return false
 
 
 
+
+
+
+//displaying the card employee in the unnasigned list 
+
+function displayEmploye(employe) {
+
+
+const employeId = employe.id ;
+
+unassignedList.insertAdjacentHTML('beforeend', `
+  
+  <div class="w-70 rounded-lg shadow-md flex items-center bg-white h-fit my-3 box-border p-4 " dataset-id=${employeId}>
+   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${employe.photo}" alt="${employe.name}">
+
+
+   <div class="flex-1 mx-2">
+    <h1 class="font-bold  text-black my-1">${employe.name}</h1>
+     <h2 class="text-gray-600 font-semibold my-1">${employe.role}</h2>
+
+   </div>
+   <button class="w-fit h-fit p-2  bg-red-500 rounded-md  hover:bg-red-900 transition">
+    <i class="fa-solid fa-trash font-bold text-center text-white bg-none  rounded-md"></i>
+   </button>
+
+  </div> 
+  
+  `)
+}

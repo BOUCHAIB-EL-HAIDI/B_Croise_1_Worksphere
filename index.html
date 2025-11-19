@@ -47,6 +47,7 @@
 <h1 class="text-black font-bold text-2xl">UNASSIGNED WORKER : <span></span></h1>
 
  <div class="unassigned_list">
+  
 
 
 
@@ -89,14 +90,14 @@
   </div>
   <div class="autreRole hidden">
     <div class="flex flex-col">
-    <label for="autrerole"></label>
-    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" id="autrerole" placeholder="Enter role name" required class="mt-1">
+    <label for="autrerole">Enter Role</label>
+    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" id="autrerole" placeholder="Enter role name" class="mt-1">
   </div>
   </div>
 
   <!-- Photo -->
   <div class="flex items-center gap-4">
-    <img src="Assets/me.png" alt="preview" class="rounded-full w-16 h-16 border border-gray-400">
+    <img id="imageSRC"src="Assets/me.png" alt="preview" class="rounded-full w-16 h-16 border border-gray-400">
 
     <div class="flex flex-col">
       <label for="image">Image URL</label>
