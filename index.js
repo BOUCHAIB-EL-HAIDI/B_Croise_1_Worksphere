@@ -192,13 +192,10 @@ addExpBtn.addEventListener('click', ()=> {
 submitBtn.addEventListener('click', (e)=>{
    
       e.preventDefault();
-     console.log('Submit clicked!');
       if (!form.checkValidity()) {
         form.reportValidity();
-        console.log('Form is invalid!');
         return;
     }
-    console.log('Form is valid!'); 
 
     const startDate= document.querySelectorAll('.Start_Date');
     const endDate= document.querySelectorAll('.End_Date');
@@ -297,8 +294,9 @@ submitBtn.addEventListener('click', (e)=>{
     addExpBtn.disabled = false;
     experience_container.innerHTML ="";
     form.classList.add('hidden');
+    updateCount(employes)
+ 
 });
-
 
 
 // validate the end date and start date start date should be lesser then end date 
@@ -333,7 +331,7 @@ const employeId = employe.id ;
 
 unassignedList.insertAdjacentHTML('beforeend', `
   
-  <div class="w-70 rounded-lg shadow-md flex items-center bg-white h-fit my-3 box-border p-4 " dataset-id=${employeId}>
+  <div class="card w-70 rounded-lg shadow-md flex items-center bg-white h-fit my-3 box-border p-4 " data-id=${employeId}>
    <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${employe.photo}" alt="${employe.name}">
 
 
@@ -342,7 +340,7 @@ unassignedList.insertAdjacentHTML('beforeend', `
      <h2 class="text-gray-600 font-semibold my-1">${employe.role}</h2>
 
    </div>
-   <button class="w-fit h-fit p-2  bg-red-500 rounded-md  hover:bg-red-900 transition">
+   <button class="delete w-fit h-fit p-2  bg-red-500 rounded-md  hover:bg-red-900 transition">
     <i class="fa-solid fa-trash font-bold text-center text-white bg-none  rounded-md"></i>
    </button>
 
@@ -350,3 +348,45 @@ unassignedList.insertAdjacentHTML('beforeend', `
   
   `)
 }
+
+
+
+
+//this is for removing employe form the unnasigned list and update the employes array
+
+unassignedList.addEventListener('click',(e)=> {
+
+  
+  const deleteBtn = e.target.closest('.delete');
+
+  if(!deleteBtn) return ;
+
+  const card = deleteBtn.closest('.card');
+
+  if(!card) return ;
+  
+  const employeid = card.getAttribute('data-id')
+
+  card.remove();
+
+  employes = employes.filter(emp => emp.id != employeid)
+
+  updateCount(employes)
+
+})
+
+
+//update the employe count 
+
+
+function updateCount(employes){
+
+const EmployeCount = document.querySelector('.count');
+
+EmployeCount.innerText = employes.length ;
+
+}
+
+
+
+
