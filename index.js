@@ -424,9 +424,9 @@ assignContainer.innerHTML = "";
 
 
  assignContainer.insertAdjacentHTML('afterbegin', `
-    <div class="flex justify-between items-center mb-3">
-      <h1 class="text-black font-semibold text-lg mr-1">Assign Employee</h1>
-      <button class="close bg-red-500 text-white px-1 py-1 rounded hover:bg-red-700">
+    <div class="flex justify-between items-center mb-[2px]">
+      <h1 class="text-black font-semibold  mx-[2px]">Assign Employee</h1>
+      <button class="close bg-red-500 text-white px-[2px] py-[2px]rounded hover:bg-red-700">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -445,7 +445,7 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
 
  assignContainer.insertAdjacentHTML('beforeend', `
   
-    <div class="card w-[200px] rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-50 cursor-pointer " data-id=${e.id}>
+    <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-[1px] box-border scale-50 cursor-pointer " data-id=${e.id}>
    <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${e.photo}" alt="${e.name}">
 
 
@@ -478,7 +478,7 @@ c.addEventListener('click' , ()=> {
       const employeeId = c.getAttribute('data-id');
       const employee = employes.find(emp => emp.id == employeeId);
       
-      if(!employee || employee.assigned) {
+      if(employee.assigned) {
         alert('This employee is already assigned!');
         return;
       }
@@ -497,6 +497,8 @@ c.addEventListener('click' , ()=> {
    </div> 
      
     `)
+
+
     employee.assigned = true;
     employee.assignedZone = `${roomName}` ;
 
