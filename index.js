@@ -454,6 +454,7 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
      <h2 class="text-gray-600 font-semibold my-1">${e.role}</h2>
 
    </div>
+   
   </div> 
   
   
@@ -489,11 +490,14 @@ c.addEventListener('click' , ()=> {
    <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${employee.photo}" alt="${employee.name}">
     
 
-   <div class="flex-1 mx-2">
+   <div class="flex-1 mx-[4px]">
     <h1 class="font-bold  text-black my-1">${employee.name}</h1>
      <h2 class="text-gray-600 font-semibold my-1">${employee.role}</h2>
 
    </div>
+     <button class="RemoveEmployeFromRoom w-fit h-fit p-[4px] mr-[2px] bg-red-500 rounded-md  hover:bg-red-900 transition">
+     <i class="fa-sharp-duotone fa-solid fa-x text-center text-white bg-none  rounded-md"></i> 
+     </button>
    </div> 
      
     `)
