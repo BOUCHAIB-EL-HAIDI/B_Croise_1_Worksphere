@@ -426,7 +426,7 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
 
  assignContainer.insertAdjacentHTML('beforeend', `
   
-    <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-75 cursor-pointer " data-id=${e.id}>
+    <div class="card w-[200px] rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-50 cursor-pointer " data-id=${e.id}>
    <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${e.photo}" alt="${e.name}">
 
 
@@ -438,10 +438,6 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
   </div> 
   
   
-  
-  
-  
-  
   `)
 
 
@@ -450,6 +446,9 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
   closeBtn.addEventListener('click', () => {
     assignContainer.classList.add('hidden');
   });
+  
+  
+   
 
     
   const CreatedCard = assignContainer.querySelectorAll('.card');
@@ -457,8 +456,6 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
   CreatedCard.forEach(c => {
 
    c.addEventListener('click' , ()=> {
-
-  Assign_Display_Container = roomDiv.querySelector('.assigned_employees_display');
       
    roomDiv.insertAdjacentHTML('beforeend',`
     
@@ -476,29 +473,21 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
     
     
     `)
-  
-     
+    e.assigned = true;
+    e.assignedZone = `${roomName}` ;
 
+    console.log(e)
+
+    console.log(roomName)
+    
+    c.remove();
      
    })
-
-   
-
-  
-
-
-
-
-
-
-
 
   })
 
 }
 
-
-
 })
 
 
@@ -506,34 +495,5 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
 
 
 })
-
-
-// PlusBtn.forEach(p => {
-
-// p.addEventListener('click', ()=> {
-
-// const allAssignedContainer = document.querySelectorAll('.assign_employe');
-
-// const allcard = document.querySelectorAll('.assign_employe .card');
-// allcard.forEach(c => {
-
-// c.addEventListener('click',(e)=> {
-
-// const cardDisplay = e.currentTarget.closest('.assigned_employees_display')
-
-// console.log(cardDisplay)
-
-
-
-// })
-
-
-
-
-// })
-
-// })
-
-// })
 
 
