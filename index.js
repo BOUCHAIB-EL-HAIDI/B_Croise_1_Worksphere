@@ -83,8 +83,8 @@ const allowedRoomsByRole = [
       "reception_room",
       "serveurs_room",
       "security_room",
-      "personnel_room",
-      "archives_room"
+      "personnel_room"
+      
     ]
   },
 
@@ -106,6 +106,8 @@ form.classList.toggle('hidden')
 //closing the form 
 closeForm.addEventListener('click', ()=>{
 form.classList.toggle('hidden')
+experience_container.innerHTML ="";
+form.reset();
 });
 
 
@@ -192,11 +194,12 @@ addExpBtn.addEventListener('click', ()=> {
 submitBtn.addEventListener('click', (e)=>{
    
       e.preventDefault();
+
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
     }
-
+    
     const startDate= document.querySelectorAll('.Start_Date');
     const endDate= document.querySelectorAll('.End_Date');
 
@@ -381,12 +384,146 @@ unassignedList.addEventListener('click',(e)=> {
 
 function updateCount(employes){
 
-const EmployeCount = document.querySelector('.count');
+const Employecount = document.querySelector('.count');
 
-EmployeCount.innerText = employes.length ;
+const unassignedCount = employes.filter(emp => !emp.assigned).length;
+
+Employecount.innerText = unassignedCount;
 
 }
 
 
 
+//this is for making the assign employe card in each room 
 
+const PlusBtn = document.querySelectorAll('.rooms i ');
+
+PlusBtn.forEach(p => {
+
+p.addEventListener('click',(e)=> {
+
+const roomDiv = e.currentTarget.closest("div[class*='_room']")
+
+const roomName = roomDiv.classList[0];
+
+const assignContainer = roomDiv.querySelector('.assign_employe')
+
+ 
+const cardRemaining = assignContainer.querySelectorAll('.card');
+
+if(!assignContainer.classList.contains('hidden')) {
+  assignContainer.classList.add('hidden');
+  return;
+}
+
+
+assignContainer.classList.remove('hidden');
+
+
+assignContainer.innerHTML = "";
+
+
+ assignContainer.insertAdjacentHTML('afterbegin', `
+    <div class="flex justify-between items-center mb-[2px]">
+      <h1 class="text-black font-semibold  mx-[2px]">Assign Employee</h1>
+      <button class="close bg-red-500 text-white px-[2px] py-[2px]rounded hover:bg-red-700">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  `);
+
+  
+  const closeBtn = assignContainer.querySelector('.close');
+  closeBtn.addEventListener('click', () => {
+    assignContainer.classList.add('hidden');
+  });
+
+employes.forEach(e => {
+
+if (e.allowedRooms.includes(roomName) && !e.assigned) {
+
+
+ assignContainer.insertAdjacentHTML('beforeend', `
+  
+    <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-[1px] box-border scale-50 cursor-pointer " data-id=${e.id}>
+   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${e.photo}" alt="${e.name}">
+
+
+   <div class="flex-1 mx-2">
+    <h1 class="font-bold  text-black my-1">${e.name}</h1>
+     <h2 class="text-gray-600 font-semibold my-1">${e.role}</h2>
+
+   </div>
+   
+  </div> 
+  
+  
+  `)
+
+}
+
+})
+
+  
+  
+   
+
+    
+  const CreatedCard = assignContainer.querySelectorAll('.card');
+
+
+  CreatedCard.forEach(c => {
+
+c.addEventListener('click' , ()=> {
+      
+      const employeeId = c.getAttribute('data-id');
+      const employee = employes.find(emp => emp.id == employeeId);
+      
+      if(employee.assigned) {
+        alert('This employee is already assigned!');
+        return;
+      }
+      
+   roomDiv.insertAdjacentHTML('beforeend',`
+    
+        <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-75 cursor-pointer " data-id=${employee.id}>
+   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${employee.photo}" alt="${employee.name}">
+    
+
+   <div class="flex-1 mx-[4px]">
+    <h1 class="font-bold  text-black my-1">${employee.name}</h1>
+     <h2 class="text-gray-600 font-semibold my-1">${employee.role}</h2>
+
+   </div>
+     <button class="RemoveEmployeFromRoom w-fit h-fit p-[4px] mr-[2px] bg-red-500 rounded-md  hover:bg-red-900 transition">
+     <i class="fa-sharp-duotone fa-solid fa-x text-center text-white bg-none  rounded-md"></i> 
+     </button>
+   </div> 
+     
+    `)
+
+
+    employee.assigned = true;
+    employee.assignedZone = `${roomName}` ;
+
+
+
+
+    //this is for removing employe card from the unassignedlist when the card is assigned to a room 
+     const unassignedCard = unassignedList.querySelector(`.card[data-id="${employee.id}"]`);
+    if(unassignedCard) {
+      unassignedCard.remove();
+    }
+     c.remove();
+
+     updateCount(employes);
+     
+     assignContainer.classList.add('hidden');
+     
+   })
+
+})
+
+})
+
+})

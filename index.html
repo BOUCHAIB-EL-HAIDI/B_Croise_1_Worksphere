@@ -55,12 +55,15 @@
 
 <button class="add_worker_btn cursor-pointer bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">ADD NEW WORKER</button>
 
- <form action="" class="form hidden border-2  flex flex-col space-y-4 p-4 absolute top-10 left-3/4 z-50 bg-gray-300 w-80">
+
+ 
+
+<form action="" class="form hidden border-2  flex flex-col space-y-4 p-4 absolute top-10 left-3/4 z-50 bg-gray-300 w-80 h-[600px] overflow-y-auto">
   <i class="close fa-solid fa-xmark font-extrabold bg-red-600 text-2xl self-end cursor-pointer hover:bg-red-900"></i>
   <!-- Name -->
   <div class="flex flex-col">
     <label for="name">Name</label>
-    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" id="name" placeholder="Enter worker name" required class="mt-1">
+    <input pattern="^[A-Za-z\s]{2,30}$" title="Only letters and spaces, 2–50 characters" type="text" id="name" placeholder="Enter worker name" required class="mt-1">
   </div>
 
   <!-- Email -->
@@ -132,26 +135,88 @@
 
 </form>
 
+ 
+ 
 
 
 
 </div>
 
 
-<div  class="plan-container bg-gray-200 p-4">
+<div  class="plan-container bg-gray-200 p-4 relative">
 
 <div class="rooms  bg-gray-200 w-full h-full border-4 border-green-500 grid grid-cols-12 grid-rows-12 gap-3">
 
- <div class="confrence_room  row-start-1 row-end-6 col-start-1 col-end-7 bg-[url('/Assets/confrence.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i> </div>
- <div class="reception_room row-start-6 row-end-13 col-start-1 col-end-6 bg-[url('Assets/reception.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i></div>
- <div class="serveurs_room  row-start-1 row-end-6 col-start-7 col-end-10 bg-[url('Assets/serveur.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer "></i></div>
- <div class="security_room row-start-1 row-end-6 col-start-10 col-end-13 bg-[url('Assets/security.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i></div>
- <div class="personnel_room row-start-6 row-end-13 col-start-7 col-end-10 bg-[url('Assets/personnel.png')] bg-center bg-cover flex justify-center items-center" ><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i></div>
- <div class="archives_room  row-start-6 row-end-13 col-start-10 col-end-13 bg-[url('Assets/archive.png')] bg-center bg-cover flex justify-center items-center"><i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer"></i></div>
+ <div class="confrence_room  row-start-1 row-end-6 col-start-1 col-end-7 bg-[url('/Assets/confrence.png')] bg-center bg-cover flex flex-wrap relative ">
+  <i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+   
+   <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+  
+
+  </div>
+
+
+
+
+
+</div>
+ <div class="reception_room row-start-6 row-end-13 col-start-1 col-end-6 bg-[url('Assets/reception.png')] bg-center bg-cover flex flex-wrap relative">
+<i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+ 
+   <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+  
+
+  </div>
+
+ </div>
+ <div class="serveurs_room  row-start-1 row-end-6 col-start-7 col-end-10 bg-[url('Assets/serveur.png')] bg-center bg-cover flex flex-wrap relative" >
+  <i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+ 
+  <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+
+
+  </div>
+
+
+ </div>
+ <div class="security_room row-start-1 row-end-6 col-start-10 col-end-13 bg-[url('Assets/security.png')] bg-center bg-cover flex flex-wrap relative">
+  <i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+
+    <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+
+
+  </div>
+ 
+  
+ 
+ </div>
+ <div class="personnel_room row-start-6 row-end-13 col-start-7 col-end-10 bg-[url('Assets/personnel.png')] bg-center bg-cover flex flex-wrap relative" >
+  <i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+ 
+  <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+ 
+
+  </div>
+
+ </div>
+ <div class="archives_room  row-start-6 row-end-13 col-start-10 col-end-13 bg-[url('Assets/archive.png')] bg-center bg-cover flex flex-wrap relative">
+  <i class="fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+ 
+    <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+   
+
+  </div>
+
+ </div>
  
 
 
 </div>
+
+
+
+
+
 
 </div>
 
