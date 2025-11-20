@@ -83,8 +83,8 @@ const allowedRoomsByRole = [
       "reception_room",
       "serveurs_room",
       "security_room",
-      "personnel_room",
-      "archives_room"
+      "personnel_room"
+      
     ]
   },
 
@@ -426,7 +426,7 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
 
  assignContainer.insertAdjacentHTML('beforeend', `
   
-    <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-75 " data-id=${e.id}>
+    <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-75 cursor-pointer " data-id=${e.id}>
    <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${e.photo}" alt="${e.name}">
 
 
@@ -444,10 +444,56 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
   
   `)
 
-   const closeBtn = assignContainer.querySelector('.close');
+
+
+  const closeBtn = assignContainer.querySelector('.close');
   closeBtn.addEventListener('click', () => {
     assignContainer.classList.add('hidden');
   });
+
+    
+  const CreatedCard = assignContainer.querySelectorAll('.card');
+
+  CreatedCard.forEach(c => {
+
+   c.addEventListener('click' , ()=> {
+
+  Assign_Display_Container = roomDiv.querySelector('.assigned_employees_display');
+      
+   roomDiv.insertAdjacentHTML('beforeend',`
+    
+        <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-75 cursor-pointer " data-id=${e.id}>
+   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${e.photo}" alt="${e.name}">
+    
+
+   <div class="flex-1 mx-2">
+    <h1 class="font-bold  text-black my-1">${e.name}</h1>
+     <h2 class="text-gray-600 font-semibold my-1">${e.role}</h2>
+
+   </div>
+   </div> 
+    
+    
+    
+    `)
+  
+     
+
+     
+   })
+
+   
+
+  
+
+
+
+
+
+
+
+
+  })
 
 }
 
@@ -456,21 +502,38 @@ if (e.allowedRooms.includes(roomName) && !e.assigned) {
 })
 
 
-
-
-
+})
 
 
 })
 
 
+// PlusBtn.forEach(p => {
+
+// p.addEventListener('click', ()=> {
+
+// const allAssignedContainer = document.querySelectorAll('.assign_employe');
+
+// const allcard = document.querySelectorAll('.assign_employe .card');
+// allcard.forEach(c => {
+
+// c.addEventListener('click',(e)=> {
+
+// const cardDisplay = e.currentTarget.closest('.assigned_employees_display')
+
+// console.log(cardDisplay)
+
+
+
+// })
 
 
 
 
+// })
 
+// })
 
+// })
 
-
-})
 
