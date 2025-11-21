@@ -1,4 +1,4 @@
-// Declaration 
+// Main Variable Declaration 
 
 const  workerBTn = document.querySelector('.add_worker_btn')
 const form = document.querySelector('.form');
@@ -354,7 +354,6 @@ unassignedList.insertAdjacentHTML('beforeend', `
 
 
 
-
 //this is for removing employe form the unnasigned list and update the employes array
 
 unassignedList.addEventListener('click',(e)=> {
@@ -396,7 +395,7 @@ Employecount.innerText = unassignedCount;
 
 //this is for making the assign employe card in each room 
 
-const PlusBtn = document.querySelectorAll('.rooms i ');
+const PlusBtn = document.querySelectorAll('.rooms .plus ');
 
 PlusBtn.forEach(p => {
 
@@ -512,7 +511,28 @@ c.addEventListener('click' , ()=> {
      
     `)
 
-    RemoveEmployeFromRoom();
+      
+  const allCardsInRoom = roomDiv.querySelectorAll('.card');
+const newCard = allCardsInRoom[allCardsInRoom.length - 1];
+
+const removeBtn = newCard.querySelector('.RemoveEmployeFromRoom');
+
+removeBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); 
+  employee.assigned = false;
+  employee.assignedZone = null;
+  newCard.remove();
+  updateCount(employes);
+  displayEmploye(employee);
+});
+
+
+newCard.addEventListener('click', (event) => {
+  
+  if(event.target.closest('.RemoveEmployeFromRoom')) return;
+  
+  PopModaldetails(employee);
+});
 
 
     employee.assigned = true;
@@ -526,12 +546,16 @@ c.addEventListener('click' , ()=> {
     if(unassignedCard) {
       unassignedCard.remove();
     }
+
+    updateCount(employes);
+
      c.remove();
 
-     updateCount(employes);
      
-     assignContainer.classList.add('hidden');
-     
+     const cardRemaining = assignContainer.querySelectorAll('.card');
+   if(cardRemaining.length === 0) {
+   assignContainer.classList.add('hidden');
+}
    })
 
 })
@@ -543,84 +567,71 @@ c.addEventListener('click' , ()=> {
 
 
 
-//this is for removing employe from room 
-
-
-function RemoveEmployeFromRoom() {
-
-
-
-const allRooms =  document.querySelectorAll('div[class*="_room"]')
-
-allRooms.forEach(r=> {
-
-const removeFromRoomBtns = r.querySelectorAll('.RemoveEmployeFromRoom')
-
-removeFromRoomBtns.forEach(btn => {
-
-  btn.addEventListener('click', ()=> {
-
-  const targetEmployeCard = btn.closest('.card');
-
-
-  const targetemployeId = targetEmployeCard.getAttribute('data-id');
-  const targetEmploye = employes.find(emp => emp.id == targetemployeId)
-
-  
-  targetEmploye.assigned = false ;
-
-  targetEmploye.assignedZone = null ;
-
-  console.log(targetEmploye)
-  targetEmployeCard.remove()
-  updateCount(employes)
-
  
+
+
+
+
+function PopModaldetails(employee) {
+  const modal = document.querySelector('.Modal_details');
   
-  unassignedList.insertAdjacentHTML('beforeend', `
+
+
+  modal.innerHTML = `
+    <div class="image flex justify-center bg-gray-100 p-2 relative">
+      <img src="${employee.photo}" alt="${employee.name}" class="h-[100px] w-[100px] rounded-full border-2 border-staffGreen">
+      <button class="Close_PopUp w-fit h-fit p-[4px] mr-[2px] bg-red-500 rounded-md hover:bg-red-900 transition absolute right-[2px] top-[2px]">
+        <i class="fa-sharp-duotone fa-solid fa-x text-center text-white bg-none rounded-md"></i> 
+      </button>
+    </div>
+    
+    <div class="employeInfo">
+      <div class="name bg-gray-100 p-1 m-1">
+        <span class="font-bold">Name:</span> <span>${employee.name}</span>
+      </div>
+      <div class="role bg-gray-100 p-1 m-1">
+        <span class="font-bold">Role:</span> <span>${employee.role}</span>
+      </div>
+      <div class="email bg-gray-100 p-1 m-1">
+        <span class="font-bold">Email:</span> <span>${employee.email}</span>
+      </div>
+      <div class="phone bg-gray-100 p-1 m-1">
+        <span class="font-bold">Phone:</span> <span>${employee.phone}</span>
+      </div>
+      <div class="localisation bg-gray-100 p-1 m-1">
+        <span class="font-bold">Location:</span> <span>${employee.assignedZone.split("_").join(' ') || 'Unassigned'}</span>
+      </div>
+      
+      <div class="experience bg-white p-1 m-1 flex flex-col">
+        <h1 class="font-bold">Experiences</h1>
+        ${employee.experiences.map(exp => `
+          <div class="exp m-2 bg-gray-100 p-2">
+            <div class="expCompany">
+              <span class="font-semibold">Company:</span> <span>${exp.companyName}</span>
+            </div>
+            <div class="expRole">
+              <span class="font-semibold">Role:</span> <span>${exp.role}</span>
+            </div>
+            <div class="expPeriod">
+              <span class="font-semibold">Period:</span> From <span>${exp.startingdATE}</span> To <span>${exp.endingDate}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
   
-  <div class="card w-70 rounded-lg shadow-md flex items-center bg-white h-fit my-3 box-border p-4 " data-id=${targetemployeId}>
-   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${targetEmploye.photo}" alt="${targetEmploye.name}">
 
-
-   <div class="flex-1 mx-2">
-    <h1 class="font-bold  text-black my-1">${targetEmploye.name}</h1>
-     <h2 class="text-gray-600 font-semibold my-1">${targetEmploye.role}</h2>
-
-   </div>
-   <button class="delete w-fit h-fit p-2  bg-red-500 rounded-md  hover:bg-red-900 transition">
-    <i class="fa-solid fa-trash font-bold text-center text-white bg-none  rounded-md"></i>
-   </button>
-
-  </div>
+  modal.classList.remove('hidden');
   
-  `)
-
-   
-   
-   updateCount(employes)
-
-
-  })
-
-
-
-
-
-})
-
-
-
-
-
-
-
-
-
-
-
-})
-
-
-
+  
+  const closeBtn = modal.querySelector('.Close_PopUp');
+  closeBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    modal.innerHTML = "";
+  });
 }
+
+
+
+
