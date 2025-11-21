@@ -178,7 +178,7 @@ addExpBtn.addEventListener('click', ()=> {
     experience_count++;
     
 
-     if (experience_count >= 3) {
+     if (experience_count > 3) {
             addExpBtn.disabled = true; 
             alert("only 3 experience are allowed ")
         }
@@ -402,6 +402,8 @@ PlusBtn.forEach(p => {
 
 p.addEventListener('click',(e)=> {
 
+
+
 const roomDiv = e.currentTarget.closest("div[class*='_room']")
 
 const roomName = roomDiv.classList[0];
@@ -411,9 +413,17 @@ const assignContainer = roomDiv.querySelector('.assign_employe')
  
 const cardRemaining = assignContainer.querySelectorAll('.card');
 
-if(!assignContainer.classList.contains('hidden')) {
+const unassignedList_Length = unassignedList.querySelectorAll('.card').length
+
+if(!assignContainer.classList.contains('hidden') ) {
   assignContainer.classList.add('hidden');
   return;
+}else if (unassignedList_Length === 0){
+
+  alert("there is no available employe to add to room")
+  assignContainer.classList.add('hidden');
+  return;
+
 }
 
 
@@ -502,6 +512,8 @@ c.addEventListener('click' , ()=> {
      
     `)
 
+    RemoveEmployeFromRoom();
+
 
     employee.assigned = true;
     employee.assignedZone = `${roomName}` ;
@@ -527,3 +539,88 @@ c.addEventListener('click' , ()=> {
 })
 
 })
+
+
+
+
+//this is for removing employe from room 
+
+
+function RemoveEmployeFromRoom() {
+
+
+
+const allRooms =  document.querySelectorAll('div[class*="_room"]')
+
+allRooms.forEach(r=> {
+
+const removeFromRoomBtns = r.querySelectorAll('.RemoveEmployeFromRoom')
+
+removeFromRoomBtns.forEach(btn => {
+
+  btn.addEventListener('click', ()=> {
+
+  const targetEmployeCard = btn.closest('.card');
+
+
+  const targetemployeId = targetEmployeCard.getAttribute('data-id');
+  const targetEmploye = employes.find(emp => emp.id == targetemployeId)
+
+  
+  targetEmploye.assigned = false ;
+
+  targetEmploye.assignedZone = null ;
+
+  console.log(targetEmploye)
+  targetEmployeCard.remove()
+  updateCount(employes)
+
+ 
+  
+  unassignedList.insertAdjacentHTML('beforeend', `
+  
+  <div class="card w-70 rounded-lg shadow-md flex items-center bg-white h-fit my-3 box-border p-4 " data-id=${targetemployeId}>
+   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${targetEmploye.photo}" alt="${targetEmploye.name}">
+
+
+   <div class="flex-1 mx-2">
+    <h1 class="font-bold  text-black my-1">${targetEmploye.name}</h1>
+     <h2 class="text-gray-600 font-semibold my-1">${targetEmploye.role}</h2>
+
+   </div>
+   <button class="delete w-fit h-fit p-2  bg-red-500 rounded-md  hover:bg-red-900 transition">
+    <i class="fa-solid fa-trash font-bold text-center text-white bg-none  rounded-md"></i>
+   </button>
+
+  </div>
+  
+  `)
+
+   
+   
+   updateCount(employes)
+
+
+  })
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+})
+
+
+
+}
