@@ -182,7 +182,7 @@ addExpBtn.addEventListener('click', ()=> {
             addExpBtn.disabled = true; 
             alert("only 3 experience are allowed ")
         }
-
+    
 
 })
 
@@ -343,39 +343,11 @@ unassignedList.insertAdjacentHTML('beforeend', `
      <h2 class="text-gray-600 font-semibold my-1">${employe.role}</h2>
 
    </div>
-   <button class="delete w-fit h-fit p-2  bg-red-500 rounded-md  hover:bg-red-900 transition">
-    <i class="fa-solid fa-trash font-bold text-center text-white bg-none  rounded-md"></i>
-   </button>
-
   </div> 
   
   `)
 }
 
-
-
-//this is for removing employe form the unnasigned list and update the employes array
-
-unassignedList.addEventListener('click',(e)=> {
-
-  
-  const deleteBtn = e.target.closest('.delete');
-
-  if(!deleteBtn) return ;
-
-  const card = deleteBtn.closest('.card');
-
-  if(!card) return ;
-  
-  const employeid = card.getAttribute('data-id')
-
-  card.remove();
-
-  employes = employes.filter(emp => emp.id != employeid)
-
-  updateCount(employes)
-
-})
 
 
 //update the employe count 
