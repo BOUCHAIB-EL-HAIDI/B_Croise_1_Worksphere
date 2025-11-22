@@ -8,18 +8,20 @@
     <!-- Tailwind v4 CDN -->
    <script src="https://cdn.tailwindcss.com/3.4.17?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-           staffGreen: '#38A747',
-          },
-    
-        }
-      }
-    }
-  </script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          staffGreen: '#38A747',
+        },
+        gridTemplateColumns: {
+          '16': 'repeat(16, minmax(0, 1fr))',
+        },
+      },
+    },
+  }
+</script>
      
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      
@@ -141,9 +143,9 @@ submit
 
 <div  class="plan-container  p-4 relative">
   
-  <div class="rooms   w-full h-full  grid grid-cols-12 grid-rows-12 gap-3 relative">
+  <div class="rooms  bg-[url('Assets/bg.jpg')]  bg-repeat bg-auto  w-full h-full  grid grid-cols-12 grid-rows-12 gap-2   relative">
     
-    <div class="confrence_room   row-start-1 row-end-6 col-start-1 col-end-7 bg-[url('Assets/confrence.png')] bg-center bg-cover flex flex-wrap relative ">
+    <div class="confrence_room  border-4 border-gray-500  row-start-1 row-end-5 col-start-1 col-end-7  bg-[url('Assets/conrenceRoom.jpg')] bg-center  bg-no-repeat [background-size:100%_100%] overflow-hidden flex flex-wrap relative ">
       <i class=" plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
       
       <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
@@ -157,19 +159,19 @@ submit
       
       
     </div>
-    <div class="reception_room border-4 border-red-300 row-start-6 row-end-13 col-start-1 col-end-6 bg-[url('Assets/reception.png')] bg-center bg-cover flex flex-wrap relative">
+    <div class="reception_room border-4 border-red-300 row-start-5 row-end-13 col-start-1 col-end-7 bg-[url('Assets/reception.jpg')] bg-center  bg-no-repeat [background-size:100%_100%] overflow-hidden  flex flex-wrap relative">
       <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
       
       <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
         <!-- pre assigmenet emplpyee in room will show here  -->
-        
+      
       </div>
       
       
       
       
     </div>
-    <div class="serveurs_room  border-4 border-red-300  row-start-1 row-end-6 col-start-7 col-end-10 bg-[url('Assets/serveur.png')] bg-center bg-cover flex flex-wrap relative" >
+    <div class="serveurs_room  border-4 border-red-300  row-start-1 row-end-5 col-start-7 col-end-10  bg-[url('Assets/serveur.jpg')] bg-center  bg-no-repeat [background-size:100%_100%] overflow-hidden flex flex-wrap relative" >
       <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
       
       <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
@@ -178,7 +180,7 @@ submit
       </div>
       
     </div>
-    <div class="security_room border-4 border-red-300 row-start-1 row-end-6 col-start-10 col-end-13 bg-[url('Assets/security.png')] bg-center bg-cover flex flex-wrap relative">
+    <div class="security_room border-4 border-red-300 row-start-1 row-end-5 col-start-10 col-end-13  bg-[url('Assets/security.jpg')] bg-center  bg-no-repeat [background-size:100%_100%] overflow-hidden flex flex-wrap relative">
       <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
       
       <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
@@ -190,7 +192,7 @@ submit
       
       
     </div>
-    <div class="personnel_room row-start-6 row-end-13 col-start-7 col-end-10 bg-[url('Assets/personnel.png')] bg-center bg-cover flex flex-wrap relative" >
+    <div class="personnel_room border-4 border-gray-500 row-start-9 row-end-13 col-start-7 col-end-10  bg-[url('Assets/personal.jpg')] bg-center  bg-no-repeat [background-size:100%_100%] overflow-hidden  flex flex-wrap relative" >
       <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
       
       <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
@@ -201,7 +203,7 @@ submit
       
       
     </div>
-    <div class="archives_room  border-4 border-red-300  row-start-6 row-end-13 col-start-10 col-end-13 bg-[url('Assets/archive.png')] bg-center bg-cover flex flex-wrap relative">
+    <div class="archives_room  border-4 border-red-300  row-start-9 row-end-13 col-start-10 col-end-13 bg-[url('Assets/archives.jpg')] bg-center  bg-no-repeat [background-size:100%_100%] overflow-hidden  flex flex-wrap relative">
       <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
       
       <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
