@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StaffFlow</title>
  
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
     <!-- Tailwind v4 CDN -->
    <script src="https://cdn.tailwindcss.com/3.4.17?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 
@@ -23,220 +21,208 @@
     }
   </script>
      
-    <script src="index.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <script src="https://cdn.jsdelivr.net/npm/libphonenumber-js@1.10.24/bundle/libphonenumber-js.min.js"></script>
-
-</head>
-<body class="box-border m-0 p-0 h-screen" >
-
-
-
-
-
-<nav class="h-14 bg-staffGreen fixed w-full p-2 flex justify-center ">
-    
-    <img class="w-10 h-10 object-contain mr-2 inline-block"src="/Assets/StaffFlow Icon.png" alt="staff flow logo">
-   
-    <span class="text-yellow-400 font-extrabold  text-2xl">StaffFlow</span> 
-</nav>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     
+    </head>
+    <body class="box-border m-0 p-0 h-screen" >
+      
+      
+      
+      
+      
+      <nav class="h-14 bg-staffGreen fixed w-full p-2 flex justify-center ">
+        
+        <img class="w-10 h-10 object-contain mr-2 inline-block"src="/Assets/StaffFlow Icon.png" alt="staff flow logo">
+        
+        <span class="text-yellow-400 font-extrabold  text-2xl">StaffFlow</span> 
+      </nav>
   
-<main  class="pt-16 h-screen grid grid-cols-[1fr_3fr] gap-4 p-4 ">
-
-<div  class="unassigned-container p-2 flex flex-col  items-center gap-6 relative">
-<h1 class="text-black font-bold text-2xl">UNASSIGNED WORKER : <span class="count"></span></h1>
-
- <div class="unassigned_list">
-  
-
-
-
- </div>
-
-<button class="add_worker_btn cursor-pointer bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">ADD NEW WORKER</button>
-
-
- 
-
-<form action="" class="form hidden border-2  flex flex-col space-y-4 p-4 absolute top-10 left-3/4 z-50 bg-gray-300 w-80 h-[600px] overflow-y-auto">
-  <i class="close fa-solid fa-xmark font-extrabold bg-red-600 text-2xl self-end cursor-pointer hover:bg-red-900"></i>
-  <!-- Name -->
-  <div class="flex flex-col">
-    <label for="name">Name</label>
-    <input pattern="^[A-Za-z\s]{2,30}$" title="Only letters and spaces, 2–50 characters" type="text" id="name" placeholder="Enter worker name" required class="mt-1">
-  </div>
-
-  <!-- Email -->
-  <div class="flex flex-col">
-    <label for="email">Email</label>
-    <input type="email"  pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" title="Please enter a valid email format: example@domain.com" id="email" placeholder="Enter your email" required class="mt-1">
-  </div>
-
-  <!-- Phone -->
-  <div class="flex flex-col">
-    <label for="phone">Phone</label>
-    <input  pattern="^(06|07|\+212[67])\d{8}$"  title="Enter a valid Moroccan number starting with 06, 07, or +2126/+2127" type="tel" id="phone" placeholder="Enter phone number" required class="mt-1" >
-  </div>
-
-  <!-- Role -->
-  <div class="flex flex-col">
-    <label for="role">Role</label>
-    <select id="role" class="mt-1" required>
-      <option value="" selected disabled>Select a role</option>
-      <option value="Réceptionnistes">Réceptionnistes</option>
-      <option value="Techniciens IT">Techniciens IT</option>
-      <option value="Agents de sécurité">Agents de sécurité</option>
-      <option value="Manager">Manager</option>
-      <option value="Nettoyage">Nettoyage</option>
-      <option value="Autres Role">Autres Role</option>
-    </select>
-  </div>
-  <div class="autreRole hidden">
-    <div class="flex flex-col">
-    <label for="autrerole">Enter Role</label>
-    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" id="autrerole" placeholder="Enter role name" class="mt-1">
-  </div>
-  </div>
-
-  <!-- Photo -->
+      <main  class="pt-16 h-screen grid grid-cols-[1fr_3fr] gap-4 p-4 ">
+        
+        <div  class="unassigned-container p-2 flex flex-col  items-center gap-6 relative">
+          <h1 class="text-black font-bold text-2xl">UNASSIGNED WORKER : <span class="count"></span></h1>
+          
+          <div class="unassigned_list">
+            
+            
+            
+            
+          </div>
+          
+          <button class="add_worker_btn cursor-pointer bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">ADD NEW WORKER</button>
+          
+          
+          
+          
+          <form action="" class="form hidden border-2  flex flex-col space-y-4 p-4 absolute top-10 left-3/4 z-50 bg-gray-300 w-80 h-[600px] overflow-y-auto">
+            <i class="close fa-solid fa-xmark font-extrabold bg-red-600 text-2xl self-end cursor-pointer hover:bg-red-900"></i>
+            <!-- Name -->
+            <div class="flex flex-col">
+              <label for="name">Name</label>
+              <input pattern="^[A-Za-z\s]{2,30}$" title="Only letters and spaces, 2–50 characters" type="text" id="name" placeholder="Enter worker name" required class="mt-1">
+            </div>
+            
+            <!-- Email -->
+            <div class="flex flex-col">
+              <label for="email">Email</label>
+              <input type="email"  pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" title="Please enter a valid email format: example@domain.com" id="email" placeholder="Enter your email" required class="mt-1">
+            </div>
+            
+            <!-- Phone -->
+            <div class="flex flex-col">
+              <label for="phone">Phone</label>
+              <input  pattern="^(06|07|\+212[67])\d{8}$"  title="Enter a valid Moroccan number starting with 06, 07, or +2126/+2127" type="tel" id="phone" placeholder="Enter phone number" required class="mt-1" >
+            </div>
+            
+            <!-- Role -->
+            <div class="flex flex-col">
+              <label for="role">Role</label>
+              <select id="role" class="mt-1" required>
+                <option value="" selected disabled>Select a role</option>
+                <option value="Réceptionnistes">Réceptionnistes</option>
+                <option value="Techniciens IT">Techniciens IT</option>
+                <option value="Agents de sécurité">Agents de sécurité</option>
+                <option value="Manager">Manager</option>
+                <option value="Nettoyage">Nettoyage</option>
+                <option value="Autres Role">Autres Role</option>
+              </select>
+            </div>
+            <div class="autreRole hidden">
+              <div class="flex flex-col">
+                <label for="autrerole">Enter Role</label>
+                <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" id="autrerole" placeholder="Enter role name" class="mt-1">
+              </div>
+            </div>
+            
+            <!-- Photo -->
   <div class="flex items-center gap-4">
     <img id="imageSRC"src="Assets/me.png" alt="preview" class="rounded-full w-16 h-16 border border-gray-400">
-
+    
     <div class="flex flex-col">
       <label for="image">Image URL</label>
       <input type="file" accept="image/png, image/jpeg, image/jpg, image/webp"  id="image" placeholder="Enter image URL" class="mt-1" >
     </div>
   </div>
   
-    <div class="experience_section mt-6">
+  <div class="experience_section mt-6">
     <div class="flex  flex-col">
-    <h2 class="font-semibold text-lg">Experience</h2>
+      <h2 class="font-semibold text-lg">Experience</h2>
     </div>
     
     <div class="experience_container">
-    
-
       
-
-  
- 
-
-   </div>
-     <button type="button" id="addExpBtn" 
-      class="bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">
-      + Add Experience
-    </button>
-   </div>
-    <button type="submit" id="submitBtn" 
-      class="bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">
-       submit
-    </button>
+      
+      
+      
+      
+      
+      
+    </div>
+    <button type="button" id="addExpBtn" 
+    class="bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">
+    + Add Experience
+  </button>
+</div>
+<button type="submit" id="submitBtn" 
+class="bg-staffGreen text-white px-3 py-1 rounded-lg hover:bg-green-900">
+submit
+</button>
 
 
 </form>
 
- 
- 
 
-
-
-</div>
-
-
-<div  class="plan-container bg-gray-200 p-4 relative">
-
-<div class="rooms  bg-gray-200 w-full h-full border-4 border-green-500 grid grid-cols-12 grid-rows-12 gap-3 relative">
-
- <div class="confrence_room  row-start-1 row-end-6 col-start-1 col-end-7 bg-[url('/Assets/confrence.png')] bg-center bg-cover flex flex-wrap relative ">
-  <i class=" plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
-   
-   <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
-  
-   <!-- pre assigmenet emplpyee in room will show here  -->
-  
-
-  </div>
 
 
 
 
 </div>
- <div class="reception_room row-start-6 row-end-13 col-start-1 col-end-6 bg-[url('Assets/reception.png')] bg-center bg-cover flex flex-wrap relative">
-<i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
-    
-   <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
-    <!-- pre assigmenet emplpyee in room will show here  -->
+
+
+<div  class="plan-container  p-4 relative">
   
-  </div>
-
-
-
+  <div class="rooms   w-full h-full  grid grid-cols-12 grid-rows-12 gap-3 relative">
     
- </div>
- <div class="serveurs_room  row-start-1 row-end-6 col-start-7 col-end-10 bg-[url('Assets/serveur.png')] bg-center bg-cover flex flex-wrap relative" >
-  <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
- 
-  <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
-
-    <!-- pre assigmenet emplpyee in room will show here  -->
-  </div>
-   
- </div>
- <div class="security_room row-start-1 row-end-6 col-start-10 col-end-13 bg-[url('Assets/security.png')] bg-center bg-cover flex flex-wrap relative">
-  <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
-
-    <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
-     <!-- pre assigmenet emplpyee in room will show here  -->
-
-  </div>
-   
-
-  
- 
- </div>
- <div class="personnel_room row-start-6 row-end-13 col-start-7 col-end-10 bg-[url('Assets/personnel.png')] bg-center bg-cover flex flex-wrap relative" >
-  <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
- 
-  <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
-    <!-- pre assigmenet emplpyee in room will show here  -->
-
-  </div>
-
-
-
- </div>
- <div class="archives_room  row-start-6 row-end-13 col-start-10 col-end-13 bg-[url('Assets/archive.png')] bg-center bg-cover flex flex-wrap relative">
-  <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
- 
-    <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
-     <!-- pre assigmenet emplpyee in room will show here  -->
-
+    <div class="confrence_room   row-start-1 row-end-6 col-start-1 col-end-7 bg-[url('Assets/confrence.png')] bg-center bg-cover flex flex-wrap relative ">
+      <i class=" plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+      
+      <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+        
+        <!-- pre assigmenet emplpyee in room will show here  -->
+        
+        
+      </div>
+      
+      
+      
+      
     </div>
+    <div class="reception_room border-4 border-red-300 row-start-6 row-end-13 col-start-1 col-end-6 bg-[url('Assets/reception.png')] bg-center bg-cover flex flex-wrap relative">
+      <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+      
+      <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+        <!-- pre assigmenet emplpyee in room will show here  -->
+        
+      </div>
+      
+      
+      
+      
+    </div>
+    <div class="serveurs_room  border-4 border-red-300  row-start-1 row-end-6 col-start-7 col-end-10 bg-[url('Assets/serveur.png')] bg-center bg-cover flex flex-wrap relative" >
+      <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+      
+      <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+        
+        <!-- pre assigmenet emplpyee in room will show here  -->
+      </div>
+      
+    </div>
+    <div class="security_room border-4 border-red-300 row-start-1 row-end-6 col-start-10 col-end-13 bg-[url('Assets/security.png')] bg-center bg-cover flex flex-wrap relative">
+      <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+      
+      <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+        <!-- pre assigmenet emplpyee in room will show here  -->
 
-
-
- </div>
+      </div>
+      
+      
+      
+      
+    </div>
+    <div class="personnel_room row-start-6 row-end-13 col-start-7 col-end-10 bg-[url('Assets/personnel.png')] bg-center bg-cover flex flex-wrap relative" >
+      <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+      
+      <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+        <!-- pre assigmenet emplpyee in room will show here  -->
+        
+      </div>
+      
+      
+      
+    </div>
+    <div class="archives_room  border-4 border-red-300  row-start-6 row-end-13 col-start-10 col-end-13 bg-[url('Assets/archive.png')] bg-center bg-cover flex flex-wrap relative">
+      <i class="plus fa-sharp fa-solid fa-plus text-staffGreen font-extrabold text-2xl bg-black cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  mx-auto my-auto z-30"></i> 
+      
+      <div class="assign_employe hidden absolute top-12 left-4 bg-white overflow-y-auto p-[2px] z-40 rounded-lg shadow-2xl max-h-[80%] max-w-[190px]  w-fit">
+        <!-- pre assigmenet emplpyee in room will show here  -->
+        
+      </div>
+      
+      
+      
+    </div>
  
 
-
-</div>
-
-<div class="Modal_details hidden h-[370px] w-[300px] bg-white z-50 absolute top-10 left-1/2 -translate-x-1/2 flex flex-col overflow-y-auto shadow-2xl border-2 border-gray-300">
     
-
+  </div>
+  
+  <div class="Modal_details hidden h-[370px] w-[300px] bg-white z-50 absolute top-10 left-1/2 -translate-x-1/2 flex flex-col overflow-y-auto shadow-2xl border-2 border-gray-300">
+    
+  </div>
+  
+  
 </div>
-
-
-
-
-</div>
-
-
-
-
-
-
-
 
 
 
@@ -244,26 +230,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+<script src="index.js" defer></script>
 </body>
 </html>

@@ -97,6 +97,20 @@ const allowedRoomsByRole = [
 ];
 
 
+// thuis array is for room capacity 
+const ROOM_CAPACITIES = {
+  confrence_room: 3,    
+  reception_room: 1,   
+  serveurs_room: 1,      
+  security_room: 1,      
+  personnel_room: 3,     
+  archives_room: 1       
+};
+
+//this array is for the rooms that should have the color red pale when empty 
+const MANDATORY_ROOMS = ["reception_room", "serveurs_room", "security_room","archives_room"];
+
+
 
 // displaying  the form 
 
@@ -112,7 +126,7 @@ form.reset();
 
 
 
-
+//this part is when the user add the image it got added in the image src 
 imageURlInput.addEventListener('change', (e) => {
   const file = e.target.files[0];
   
@@ -126,6 +140,8 @@ imageURlInput.addEventListener('change', (e) => {
 });
 
 
+
+// this is for showing the input to enter employe role when the role is autres role 
 roleInput.addEventListener('change', ()=> {
 
 if(roleInput.value === "Autres Role"){
@@ -169,7 +185,7 @@ addExpBtn.addEventListener('click', ()=> {
     </div>
      <div class="flex flex-col">
     <label for="Role">Role</label>
-    <input pattern="^[A-Za-z\s]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" class="Role" placeholder="Enter role" required class="mt-1">
+    <input pattern="^[A-Za-z0-9&.,\- ]{2,50}$" title="Only letters and spaces, 2–50 characters" type="text" class="Role" placeholder="Enter role" required class="mt-1">
     </div>
     </div>
     `);
@@ -182,7 +198,7 @@ addExpBtn.addEventListener('click', ()=> {
             addExpBtn.disabled = true; 
             alert("only 3 experience are allowed ")
         }
-
+    
 
 })
 
@@ -343,39 +359,11 @@ unassignedList.insertAdjacentHTML('beforeend', `
      <h2 class="text-gray-600 font-semibold my-1">${employe.role}</h2>
 
    </div>
-   <button class="delete w-fit h-fit p-2  bg-red-500 rounded-md  hover:bg-red-900 transition">
-    <i class="fa-solid fa-trash font-bold text-center text-white bg-none  rounded-md"></i>
-   </button>
-
   </div> 
   
   `)
 }
 
-
-
-//this is for removing employe form the unnasigned list and update the employes array
-
-unassignedList.addEventListener('click',(e)=> {
-
-  
-  const deleteBtn = e.target.closest('.delete');
-
-  if(!deleteBtn) return ;
-
-  const card = deleteBtn.closest('.card');
-
-  if(!card) return ;
-  
-  const employeid = card.getAttribute('data-id')
-
-  card.remove();
-
-  employes = employes.filter(emp => emp.id != employeid)
-
-  updateCount(employes)
-
-})
 
 
 //update the employe count 
@@ -396,173 +384,131 @@ Employecount.innerText = unassignedCount;
 //this is for making the assign employe card in each room 
 
 const PlusBtn = document.querySelectorAll('.rooms .plus ');
-
 PlusBtn.forEach(p => {
-
-p.addEventListener('click',(e)=> {
-
-
-
-const roomDiv = e.currentTarget.closest("div[class*='_room']")
-
-const roomName = roomDiv.classList[0];
-
-const assignContainer = roomDiv.querySelector('.assign_employe')
-
- 
-const cardRemaining = assignContainer.querySelectorAll('.card');
-
-const unassignedList_Length = unassignedList.querySelectorAll('.card').length
-
-if(!assignContainer.classList.contains('hidden') ) {
-  assignContainer.classList.add('hidden');
-  return;
-}else if (unassignedList_Length === 0){
-
-  alert("there is no available employe to add to room")
-  assignContainer.classList.add('hidden');
-  return;
-
-}
-
-
-assignContainer.classList.remove('hidden');
-
-
-assignContainer.innerHTML = "";
-
-
- assignContainer.insertAdjacentHTML('afterbegin', `
-    <div class="flex justify-between items-center mb-[2px]">
-      <h1 class="text-black font-semibold  mx-[2px]">Assign Employee</h1>
-      <button class="close bg-red-500 text-white px-[2px] py-[2px]rounded hover:bg-red-700">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-  `);
-
-  
-  const closeBtn = assignContainer.querySelector('.close');
-  closeBtn.addEventListener('click', () => {
-    assignContainer.classList.add('hidden');
-  });
-
-employes.forEach(e => {
-
-if (e.allowedRooms.includes(roomName) && !e.assigned) {
-
-
- assignContainer.insertAdjacentHTML('beforeend', `
-  
-    <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-[1px] box-border scale-50 cursor-pointer " data-id=${e.id}>
-   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${e.photo}" alt="${e.name}">
-
-
-   <div class="flex-1 mx-2">
-    <h1 class="font-bold  text-black my-1">${e.name}</h1>
-     <h2 class="text-gray-600 font-semibold my-1">${e.role}</h2>
-
-   </div>
-   
-  </div> 
-  
-  
-  `)
-
-}
-
-})
-
-  
-  
-   
+  p.addEventListener('click', (e) => {
+    const roomDiv = e.currentTarget.closest("div[class*='_room']");
+    const roomName = roomDiv.classList[0];
+    const assignContainer = roomDiv.querySelector('.assign_employe');
 
     
-  const CreatedCard = assignContainer.querySelectorAll('.card');
-
-
-  CreatedCard.forEach(c => {
-
-c.addEventListener('click' , ()=> {
-      
-      const employeeId = c.getAttribute('data-id');
-      const employee = employes.find(emp => emp.id == employeeId);
-      
-      if(employee.assigned) {
-        alert('This employee is already assigned!');
-        return;
-      }
-      
-   roomDiv.insertAdjacentHTML('beforeend',`
-    
-        <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-75 cursor-pointer " data-id=${employee.id}>
-   <img  class="rounded-full border-4 border-gray-800 w-14 h-14" src="${employee.photo}" alt="${employee.name}">
-    
-
-   <div class="flex-1 mx-[4px]">
-    <h1 class="font-bold  text-black my-1">${employee.name}</h1>
-     <h2 class="text-gray-600 font-semibold my-1">${employee.role}</h2>
-
-   </div>
-     <button class="RemoveEmployeFromRoom w-fit h-fit p-[4px] mr-[2px] bg-red-500 rounded-md  hover:bg-red-900 transition">
-     <i class="fa-sharp-duotone fa-solid fa-x text-center text-white bg-none  rounded-md"></i> 
-     </button>
-   </div> 
-     
-    `)
-
-      
-  const allCardsInRoom = roomDiv.querySelectorAll('.card');
-const newCard = allCardsInRoom[allCardsInRoom.length - 1];
-
-const removeBtn = newCard.querySelector('.RemoveEmployeFromRoom');
-
-removeBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); 
-  employee.assigned = false;
-  employee.assignedZone = null;
-  newCard.remove();
-  updateCount(employes);
-  displayEmploye(employee);
-});
-
-
-newCard.addEventListener('click', (event) => {
-  
-  if(event.target.closest('.RemoveEmployeFromRoom')) return;
-  
-  PopModaldetails(employee);
-});
-
-
-    employee.assigned = true;
-    employee.assignedZone = `${roomName}` ;
-
-
-
-
-    //this is for removing employe card from the unassignedlist when the card is assigned to a room 
-     const unassignedCard = unassignedList.querySelector(`.card[data-id="${employee.id}"]`);
-    if(unassignedCard) {
-      unassignedCard.remove();
+    if (!assignContainer.classList.contains('hidden')) {
+      assignContainer.classList.add('hidden');
+      return;
     }
 
-    updateCount(employes);
+    assignContainer.innerHTML = "";
+    assignContainer.classList.remove('hidden');
 
-     c.remove();
+    // this is for adding the header assign  employe and the close button to the assign employe container
+    assignContainer.insertAdjacentHTML('afterbegin', `
+      <div class="flex justify-between items-center mb-[2px]">
+        <h1 class="text-black font-semibold mx-[2px]">Assign Employee</h1>
+        <button class="close bg-red-500 text-white px-[2px] py-[2px] rounded hover:bg-red-700">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `);
+    assignContainer.querySelector('.close').addEventListener('click', () => {
+      assignContainer.classList.add('hidden');
+    });
 
-     
-     const cardRemaining = assignContainer.querySelectorAll('.card');
-   if(cardRemaining.length === 0) {
-   assignContainer.classList.add('hidden');
-}
-   })
+    //this for showing available employe for room by role and assigned status should be false (not assigned)
+    employes.forEach(emp => {
+      if (!emp.assigned && emp.allowedRooms.includes(roomName)) {
+        assignContainer.insertAdjacentHTML('beforeend', `
+          <div class="card w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-[1px] box-border scale-50 cursor-pointer" data-id="${emp.id}">
+            <img class="rounded-full border-4 border-gray-800 w-14 h-14" src="${emp.photo}" alt="${emp.name}">
+            <div class="flex-1 mx-2">
+              <h1 class="font-bold text-black my-1">${emp.name}</h1>
+              <h2 class="text-gray-600 font-semibold my-1">${emp.role}</h2>
+            </div>
+          </div>
+        `);
+      }
+    });
 
-})
+    // if there is no employe in the unassigned list show an alert 
+    if (assignContainer.querySelectorAll('.card').length === 0) {
+      alert("Aucun employé disponible pour cette salle !");
+      assignContainer.classList.add('hidden');
+      return;
+    }
 
-})
+    // this is for adding card to room when its clicked in the assign employe container 
+    assignContainer.querySelectorAll('.card').forEach(c => {
+      c.addEventListener('click', () => {
+        const employeeId = c.getAttribute('data-id');
+        const employee = employes.find(emp => emp.id == employeeId);
 
-})
+        if (employee.assigned) {
+          alert('Cet employé est déjà assigné !');
+          return;
+        }
+
+        // this is for verifing the capacity of the room 
+        const currentCount = roomDiv.querySelectorAll('.employee-in-room').length;
+        const max = ROOM_CAPACITIES[roomName];
+        if (currentCount >= max) {
+          alert(`Salle pleine ! Capacité maximale : ${max}`);
+          return;
+        }
+
+        //this for adding the employe to selected room 
+        roomDiv.insertAdjacentHTML('beforeend', `
+          <div class="employee-in-room w-fit rounded-lg shadow-md flex items-center bg-white h-fit mb-1 box-border scale-75 cursor-pointer" data-id="${employee.id}">
+            <img class="rounded-full border-4 border-gray-800 w-14 h-14" src="${employee.photo}" alt="${employee.name}">
+            <div class="flex-1 mx-[4px]">
+              <h1 class="font-bold text-black my-1">${employee.name}</h1>
+              <h2 class="text-gray-600 font-semibold my-1">${employee.role}</h2>
+            </div>
+            <button class="RemoveEmployeFromRoom w-fit h-fit p-[4px] mr-[2px] bg-red-500 rounded-md hover:bg-red-900 transition">
+              <i class="fa-sharp-duotone fa-solid fa-x text-center text-white"></i>
+            </button>
+          </div>
+        `);
+
+        // this is for changing the state of the employe from not assigned to assigned and also getting the assignedzo,e
+        employee.assigned = true;
+        employee.assignedZone = roomName;
+
+        // this is for  removing employe from the unaasigned list when its assigned 
+        unassignedList.querySelector(`.card[data-id="${employee.id}"]`)?.remove();
+        c.remove();
+
+        // close the assign employe menu if there is no employe to assign for this room 
+        if (assignContainer.querySelectorAll('.card').length === 0) {
+          assignContainer.classList.add('hidden');
+        }
+
+        updateCount(employes);
+        updateRoomVisualState(roomDiv);
+
+        // this part is for removing employe from room 
+        const newCard = roomDiv.lastElementChild;
+        newCard.querySelector('.RemoveEmployeFromRoom').addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          employee.assigned = false;
+          employee.assignedZone = null;
+          newCard.remove();
+          displayEmploye(employee);
+          updateCount(employes);
+          updateRoomVisualState(roomDiv);
+        });
+
+        // this is for showing the modal details when the card is clicked 
+        newCard.addEventListener('click', (ev) => {
+          if (!ev.target.closest('.RemoveEmployeFromRoom')) {
+            PopModaldetails(employee);
+          }
+        });
+      });
+    });
+  });
+});
+
+
+
+
 
 
 
@@ -571,7 +517,7 @@ newCard.addEventListener('click', (event) => {
 
 
 
-
+//this function is for the pop up modal 
 function PopModaldetails(employee) {
   const modal = document.querySelector('.Modal_details');
   
@@ -621,10 +567,10 @@ function PopModaldetails(employee) {
     </div>
   `;
   
-
+  //this is for showing the modal 
   modal.classList.remove('hidden');
   
-  
+  // this is for closing modal when the close button is clicked 
   const closeBtn = modal.querySelector('.Close_PopUp');
   closeBtn.addEventListener('click', () => {
     modal.classList.add('hidden');
@@ -635,3 +581,30 @@ function PopModaldetails(employee) {
 
 
 
+// this function is for the visual state of the rooms when empty and when its not empty by capacity 
+
+function updateRoomVisualState(roomElement) {
+  const roomName = roomElement.classList[0];
+  const count = roomElement.querySelectorAll('.employee-in-room').length; 
+  const capacity = ROOM_CAPACITIES[roomName];
+
+  
+  roomElement.classList.remove('border-red-300', 'border-orange-500', 'border-green-500');
+
+  
+  if (MANDATORY_ROOMS.includes(roomName) && count === 0) {
+    roomElement.classList.add('border-4', 'border-red-300');
+  }
+ 
+  else if (count >= capacity) {
+    roomElement.classList.add('border-4', 'border-orange-500');
+  }
+ 
+  else if (count > 0) {
+    roomElement.classList.add('border-4', 'border-green-500');
+  }
+  
+  else {
+    roomElement.classList.add('border-4', 'border-gray-400'); 
+  }
+}
