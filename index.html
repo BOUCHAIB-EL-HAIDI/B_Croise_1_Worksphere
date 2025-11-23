@@ -15,14 +15,11 @@
         colors: {
           staffGreen: '#38A747',
         },
-        gridTemplateColumns: {
-          '16': 'repeat(16, minmax(0, 1fr))',
-        },
       },
     },
   }
 </script>
-     
+    
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      
     </head>
@@ -34,20 +31,20 @@
       
       <nav class="h-14 bg-staffGreen fixed w-full p-2 flex justify-center ">
         
-        <img class="w-10 h-10 object-contain mr-2 inline-block"src="/Assets/StaffFlow Icon.png" alt="staff flow logo">
+       
         
-        <span class="text-yellow-400 font-extrabold  text-2xl">StaffFlow</span> 
+        <span class="text-yellow-400 font-extrabold  text-2xl">WorkSphere</span> 
       </nav>
   
       <main  class="pt-16 h-screen grid grid-cols-[1fr_3fr] gap-4 p-4 ">
         
-        <div  class="unassigned-container p-2 flex flex-col  items-center gap-6 relative">
-          <h1 class="text-black font-bold text-2xl">UNASSIGNED WORKER : <span class="count"></span></h1>
+        <div  class="unassigned-container p-2 flex flex-col  items-center gap-6 relative shadow-lg">
+          <h1 class="text-black font-bold text-center text-2xl">Unassigned Employes : <span class="count"></span></h1>
           
           <div class="unassigned_list">
             
             
-            
+            <!--the unassigned staff will show here -->
             
           </div>
           
@@ -141,7 +138,7 @@ submit
 </div>
 
 
-<div  class="plan-container  p-4 relative">
+<div  class="plan-container shadow-2xl relative">
   
   <div class="rooms  bg-[url('Assets/bg.jpg')]  bg-repeat bg-auto  w-full h-full  grid grid-cols-12 grid-rows-12 gap-2   relative">
     
@@ -221,6 +218,9 @@ submit
   
   <div class="Modal_details hidden h-[370px] w-[300px] bg-white z-50 absolute top-10 left-1/2 -translate-x-1/2 flex flex-col overflow-y-auto shadow-2xl border-2 border-gray-300">
     
+
+    <!--this is the modal the employe info will show here  -->
+
   </div>
   
   

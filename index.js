@@ -1,30 +1,30 @@
 // Main Variable Declaration 
 
-const  workerBTn = document.querySelector('.add_worker_btn')
-const form = document.querySelector('.form');
+const  workerBTn = document.querySelector('.add_worker_btn')   // this is for the add worker  btn 
+const form = document.querySelector('.form');                  // this is the form modal
 
-const closeForm = document.querySelector('.close')
-const submitBtn= document.getElementById('submitBtn');
+const closeForm = document.querySelector('.close')           // this is for closing the form
+const submitBtn= document.getElementById('submitBtn');       // this is for submiting the form 
 
-const nameInput= document.getElementById('name'); 
+const nameInput= document.getElementById('name');                 
 const emailInput= document.getElementById('email');
-const phoneInput= document.getElementById('phone');
+const phoneInput= document.getElementById('phone');             // all of this is for getting the form inputs for validation 
 const roleInput= document.getElementById('role');
 const imageURlInput= document.getElementById('image');
 
-const experience_container = document.querySelector('.experience_container')
+const experience_container = document.querySelector('.experience_container')        // this is for getting the experience container 
 
-const addExpBtn = document.getElementById('addExpBtn');
-const experience_entry = document.querySelectorAll('.experience_entry');
+const addExpBtn = document.getElementById('addExpBtn');                             // this is for add experience button
+const experience_entry = document.querySelectorAll('.experience_entry');            // this for adding the needed experinces inputs 
 
-const autreRole = document.querySelector('.autreRole');
-const autreRoleInput = document.getElementById('autrerole');
+const autreRole = document.querySelector('.autreRole');                            // this for getting the autres role role 
+const autreRoleInput = document.getElementById('autrerole');                      // this for the autres role input 
 
 
-const image = document.getElementById('imageSRC');
-image.src = "Assets/NO_image.png" ;
-
-const unassignedList =  document.querySelector('.unassigned_list');
+const image = document.getElementById('imageSRC');                                  // this is for the images preview src 
+image.src = "Assets/NO_image.png" ;                                                  // this the preview image by default
+ 
+const unassignedList =  document.querySelector('.unassigned_list');                    // this is for getting the unassigned list 
 
 let employeIdCount = 0 ;
 
@@ -211,11 +211,12 @@ submitBtn.addEventListener('click', (e)=>{
    
       e.preventDefault();
 
+       // this is ersure that the inputs get validated 
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
     }
-    
+    // this for getting the all the start date and end date drom the experience container for validation 
     const startDate= document.querySelectorAll('.Start_Date');
     const endDate= document.querySelectorAll('.End_Date');
 
@@ -229,7 +230,7 @@ submitBtn.addEventListener('click', (e)=>{
   
 
     // this is for getting and storing every employes experience
-    Total_Experience = [];
+    Total_Experience = [];    // this is for storing all experiences 
     experience = {};
     
     let company_name = document.querySelectorAll('.Company_Name');
@@ -252,7 +253,7 @@ submitBtn.addEventListener('click', (e)=>{
      }
      Total_Experience.push(experience)
 
-     experience = {};
+     experience = {};   
 
     }
    
@@ -284,7 +285,7 @@ submitBtn.addEventListener('click', (e)=>{
     }
 
 
-    
+    // this is the employe object 
 
    employe = {
     id: employeIdCount,
@@ -300,7 +301,7 @@ submitBtn.addEventListener('click', (e)=>{
    }
 
     employes.push(employe);
-    displayEmploye(employe)
+    displayEmploye(employe)    // this for displaying the employe in the unassigned list 
     employeIdCount++;
    
     alert("Employee added successfully!");
@@ -470,7 +471,7 @@ PlusBtn.forEach(p => {
         // this is for changing the state of the employe from not assigned to assigned and also getting the assignedzo,e
         employee.assigned = true;
         employee.assignedZone = roomName;
-
+       
         // this is for  removing employe from the unaasigned list when its assigned 
         unassignedList.querySelector(`.card[data-id="${employee.id}"]`)?.remove();
         c.remove();
@@ -489,6 +490,7 @@ PlusBtn.forEach(p => {
           ev.stopPropagation();
           employee.assigned = false;
           employee.assignedZone = null;
+       
           newCard.remove();
           displayEmploye(employee);
           updateCount(employes);
@@ -608,3 +610,8 @@ function updateRoomVisualState(roomElement) {
     roomElement.classList.add('border-4', 'border-gray-400'); 
   }
 }
+
+
+
+
+
