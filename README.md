@@ -44,9 +44,12 @@ L’objectif : remplacer un tableau Excel par une solution moderne, fluide et in
 - JavaScript Vanilla ES6+
 - Git & GitHub Projects
 
+## Installation & lancement
+
       git clone  https://github.com/BOUCHAIB-EL-HAIDI/B_Croise_1_Worksphere
       cd B_Croise_1_Worksphere
 open index.html in any browser 
+
 
 
 
