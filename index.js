@@ -97,7 +97,146 @@ const allowedRoomsByRole = [
 ];
 
 
-// thuis array is for room capacity 
+
+// this for intializing 
+
+
+const initialEmployees = [
+  {
+    id: 0,
+    name: "Fatima Zahra",
+    role: "Réceptionnistes",
+    photo: "Assets/me.png",
+    email: "fatima.zahra@worksphere.ma",
+    phone: "0612345678",
+    experiences: [
+      {
+        companyName: "Hotel Atlas",
+        startingdATE: "2020-01-15",
+        endingDate: "2022-06-30",
+        role: "Receptionist"
+      },
+      {
+        companyName: "Riad Mogador",
+        startingdATE: "2022-07-01",
+        endingDate: "2024-12-31",
+        role: "Senior Receptionist"
+      }
+    ],
+    assigned: false,
+    assignedZone: null,
+    allowedRooms: ["reception_room"]
+  },
+  {
+    id: 1,
+    name: "Mohammed Alami",
+    role: "Techniciens IT",
+    photo: "Assets/me.png",
+    email: "mohammed.alami@worksphere.ma",
+    phone: "0623456789",
+    experiences: [
+      {
+        companyName: "Maroc Telecom",
+        startingdATE: "2019-03-10",
+        endingDate: "2021-08-20",
+        role: "IT Support"
+      },
+      {
+        companyName: "Inwi",
+        startingdATE: "2021-09-01",
+        endingDate: "2024-11-30",
+        role: "Network Technician"
+      }
+    ],
+    assigned: false,
+    assignedZone: null,
+    allowedRooms: ["serveurs_room"]
+  },
+  {
+    id: 2,
+    name: "Karim Benani",
+    role: "Agents de sécurité",
+    photo: "Assets/me.png",
+    email: "karim.benani@worksphere.ma",
+    phone: "0634567890",
+    experiences: [
+      {
+        companyName: "Securitas Maroc",
+        startingdATE: "2018-05-12",
+        endingDate: "2022-03-15",
+        role: "Security Guard"
+      }
+    ],
+    assigned: false,
+    assignedZone: null,
+    allowedRooms: ["security_room"]
+  },
+  {
+    id: 3,
+    name: "Amina El Fassi",
+    role: "Réceptionnistes",
+    photo: "Assets/me.png",
+    email: "amina.elfassi@worksphere.ma",
+    phone: "0645678901",
+    experiences: [
+      {
+        companyName: "Hotel Kenzi",
+        startingdATE: "2019-03-15",
+        endingDate: "2022-08-30",
+        role: "Front Desk Agent"
+      },
+      {
+        companyName: "Sofitel Casablanca",
+        startingdATE: "2022-09-01",
+        endingDate: "2024-11-20",
+        role: "Reception Supervisor"
+      }
+    ],
+    assigned: false,
+    assignedZone: null,
+    allowedRooms: ["reception_room"]
+  },
+  {
+    id: 4,
+    name: "Youssef Tazi",
+    role: "Manager",
+    photo: "Assets/me.png",
+    email: "youssef.tazi@worksphere.ma",
+    phone: "0656789012",
+    experiences: [
+      {
+        companyName: "Attijariwafa Bank",
+        startingdATE: "2015-01-10",
+        endingDate: "2019-12-31",
+        role: "Team Lead"
+      },
+      {
+        companyName: "BMCE Bank",
+        startingdATE: "2020-01-15",
+        endingDate: "2024-10-15",
+        role: "Operations Manager"
+      }
+    ],
+    assigned: false,
+    assignedZone: null,
+    allowedRooms: ["confrence_room", "reception_room", "serveurs_room", "security_room", "personnel_room", "archives_room"]
+  }
+];
+
+
+employes = initialEmployees;
+employeIdCount = 5; 
+
+
+initialEmployees.forEach(emp => {
+  displayEmploye(emp);
+});
+
+
+updateCount(employes);
+
+
+// thuis array is for room capacity
 const ROOM_CAPACITIES = {
   confrence_room: 3,    
   reception_room: 1,   
@@ -131,13 +270,16 @@ imageURlInput.addEventListener('change', (e) => {
   const file = e.target.files[0];
   
   if (file) {
+    
     const reader = new FileReader();
+    
     reader.onload = (event) => {
       image.src = event.target.result;
     };
     reader.readAsDataURL(file);
   }
 });
+
 
 
 
